@@ -1,11 +1,14 @@
 ﻿using Fayu.DataAccess.Repository.IRepository;
 using Fayu.Models;
+using Fayu.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Fayu.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class BillController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

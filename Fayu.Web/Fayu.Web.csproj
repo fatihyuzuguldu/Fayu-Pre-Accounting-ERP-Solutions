@@ -7,26 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="Views\_Partials\WizardCheckout.cshtml" />
     <None Include="Views\_Partials\_Macros.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalAddNewAddress.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalAddNewCc.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalAddPermission.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalAddRole.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalCreateApp.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalEditCc.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalEditPermission.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalEditUser.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalEnableOtp.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalPricing.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalReferEarn.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalSelectPaymentMethods.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalSelectPaymentProviders.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalShareProject.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalTwoFactorAuth.cshtml" />
-    <None Include="Views\_Partials\_Modals\ModalUpgradePlan.cshtml" />
-    <None Include="Views\_Partials\_Offcanvas\OffcanvasAddPayment.cshtml" />
-    <None Include="Views\_Partials\_Offcanvas\OffcanvasSendInvoice.cshtml" />
   </ItemGroup>
 
 
