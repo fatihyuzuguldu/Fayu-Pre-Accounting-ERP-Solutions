@@ -1,0 +1,119 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="tr"
+      class='light-style layout-wide  customizer-hide'
+      dir="ltr" data-theme="theme-default" data-assets-path='/'
+      data-template='horizontal-menu-template'>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+
+    <title>Multi-Steps Register - Pages | Materialize - Asp.Net Core MVC Admin Template</title>
+    <meta name="description" content="" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/img/favicon/favicon.ico" />
+
+    <!-- Core Styles -->
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Fonts & Flag icons -->
+    <link rel="stylesheet" href="~/vendor/fonts/materialdesignicons.css" />
+    <link rel="stylesheet" href="~/vendor/fonts/flag-icons.css" />
+    <link rel="stylesheet" href="~/vendor/libs/node-waves/node-waves.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="~/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="~/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="~/css/demo.css" />
+
+    <!-- `perfect-scrollbar` library required by SideNav plugin, `typeahead` required by search -->
+    <link rel="stylesheet" href="~/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="~/vendor/libs/typeahead-js/typeahead.css" />
+
+    <!-- Application stylesheets -->
+    <link rel="stylesheet" href="~/css/site.css" />
+
+
+
+
+
+
+    <!-- Vendor Styles -->
+    <!-- Vendor -->
+    <link rel="stylesheet" href="~/vendor/libs/bs-stepper/bs-stepper.css" />
+    <link rel="stylesheet" href="~/vendor/libs/bootstrap-select/bootstrap-select.css" />
+    <link rel="stylesheet" href="~/vendor/libs/select2/select2.css" />
+    <link rel="stylesheet" href="~/vendor/libs/&#64;form-validation/umd/styles/index.min.css" />
+
+
+    <!-- Page Styles -->
+
+    <link rel="stylesheet" href="~/vendor/css/pages/page-auth.css">
+
+
+    <!-- Include Scripts for customizer, helper, analytics, config -->
+
+    <script src="~/vendor/js/helpers.js"></script>
+    <script src="~/vendor/js/template-customizer.js"></script>
+    <script src="~/js/config.js"></script>
+
+
+
+
+</head>
+
+<body>
+    <!-- Layout Content -->
+    <partial name="_Notification" />
+    @RenderBody()
+
+
+
+
+    <!--/ Layout Content -->
+    <!-- Core Scripts -->
+
+    <script src="~/vendor/libs/jquery/jquery.js"></script>
+    <script src="~/vendor/libs/popper/popper.js"></script>
+    <script src="~/vendor/js/bootstrap.js"></script>
+    <!-- `perfect-scrollbar` library required by SideNav plugin -->
+    <script src="~/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="~/vendor/libs/node-waves/node-waves.js"></script>
+    <!-- `hammer` required for swipe guesture -->
+    <script src="~/vendor/libs/hammer/hammer.js"></script>
+    <!-- `i18n` required for translation -->
+    <script src="~/vendor/libs/i18n/i18n.js"></script>
+    <!-- `typeahead` required for search fn -->
+    <script src="~/vendor/libs/typeahead-js/typeahead.js"></script>
+    <!-- `typeahead` required for sideNav -->
+    <script src="~/vendor/js/menu.js"></script>
+    <script src="~/js/site.js"></script>
+
+
+
+
+    <!-- Vendor Scripts -->
+
+    <script src="~/vendor/libs/cleavejs/cleave.js"></script>
+    <script src="~/vendor/libs/cleavejs/cleave-phone.js"></script>
+    <script src="~/vendor/libs/bs-stepper/bs-stepper.js"></script>
+    <script src="~/vendor/libs/select2/select2.js"></script>
+    <script src="~/vendor/libs/&#64;form-validation/umd/bundle/popular.min.js"></script>
+    <script src="~/vendor/libs/&#64;form-validation/umd/plugin-bootstrap5/index.min.js"></script>
+    <script src="~/vendor/libs/&#64;form-validation/umd/plugin-auto-focus/index.min.js"></script>
+
+
+    <script src='/js/main.js'></script>
+
+    <!-- Page Scripts-->
+
+    <script src="~/js/pages-auth-multisteps.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

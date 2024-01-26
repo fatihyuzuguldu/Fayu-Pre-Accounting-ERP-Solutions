@@ -1,0 +1,233 @@
+﻿@model Bill
+@{
+    ViewData["Title"] = "Upsert Bill";
+}
+@section VendorStyles {
+
+    <link rel="stylesheet" href="~/vendor/libs/flatpickr/flatpickr.css" />
+    <link rel="stylesheet" href="~/vendor/libs/select2/select2.css" />
+}
+@section VendorScripts {
+    <script src="~/vendor/libs/cleavejs/cleave.js"></script>
+    <script src="~/vendor/libs/moment/moment.js"></script>
+    <script src="~/vendor/libs/flatpickr/flatpickr.js"></script>
+    <script src="~/vendor/libs/select2/select2.js"></script>
+}
+@section PageScripts {
+    <script src="~/js/form-layouts.js"></script>
+}
+
+<h4 class="py-3 mb-4">
+    <a href="/Admin/Dashboard/Index" class="text-muted fw-light">Dashboard /</a> <a href="/Admin/Bill/Index">Bills</a> / <a> @(Model.Id != 0 ? "Update" : "Create") Bills</a>
+</h4>
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-12">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">@(Model.Id != 0 ? "Update" : "Create") Bill</h5>
+            </div>
+            <div class="card-body">
+
+                <form method="post" class="row" enctype="multipart/form-data">
+
+                    @if (@Model.Company != null )
+                    {
+                        <h1> @Model.Company.CompanyName</h1>
+                        <input style="display: none;" asp-for="CompanyId" />
+                    }
+                    else if (@Model.Supplier != null)
+                    {
+                        <h1> @Model.Supplier.SupplierName</h1>
+                        <input style="display: none;" asp-for="SupplierId" />
+                    }
+
+                    <br />
+
+                    @if (ViewBag.Csd == "Comp")
+                    {
+                        <input style="display: none;" asp-for="CompanyId" value="@ViewBag.IdFromUrl" />
+                    }
+                    else if (ViewBag.Csd == "Supp")
+                    {
+                        <input style="display: none;" asp-for="SupplierId" value="@ViewBag.IdFromUrl" />
+                    }
+                    <div class="col-md-12">
+                        <div class="input-group input-group-merge mb-4">
+                            <br />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="input-group input-group-merge mb-4">
+                                <span class="input-group-text"><i class="mdi mdi-archive"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="StockName" type="text" class="form-control"  />
+                                    <label asp-for="StockName" class="ms-2">Stock Name</label>
+                                    <span asp-validation-for="StockName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-merge mb-4">
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="StockAmount" type="number" class="form-control" autocomplete="off" required/>
+                                    <label asp-for="StockAmount" class="ms-2">Amount</label>
+                                    <span asp-validation-for="StockAmount" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div class="input-group input-group-merge mb-4">
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="StockTax" type="number" class="form-control" autocomplete="off" />
+                                    <label asp-for="StockTax" class="ms-2">Tax</label>
+                                    <span asp-validation-for="StockTax" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-merge mb-4">
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="StockDiscount1" type="number" class="form-control" autocomplete="off" />
+                                    <label asp-for="StockDiscount1" class="ms-2">Disc 1</label>
+                                    <span asp-validation-for="StockDiscount1" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-merge mb-4">
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="StockDiscount2" type="number" class="form-control" autocomplete="off" />
+                                    <label asp-for="StockDiscount2" class="ms-2">Disc 2</label>
+                                    <span asp-validation-for="StockDiscount2" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-merge mb-4">
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="StockUnit" type="number" class="form-control" autocomplete="off" required/>
+                                    <label asp-for="StockUnit" class="ms-2">Unit</label>
+                                    <span asp-validation-for="StockUnit" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-merge mb-4">
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="StockTotalAmount" type="number" class="form-control" autocomplete="off" readonly />
+                                    <label asp-for="StockTotalAmount" class="ms-2">Amount</label>
+                                    <span asp-validation-for="StockTotalAmount" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="input-group input-group-merge mb-4">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                        </div>
+                        <div class="col-md-5">
+                            <div class="row">
+                                <label asp-for="StockTotalDisc" class="col-sm-6 col-form-label text-sm-end">Total Discount</label>
+                                <div class="col-sm-6">
+                                    <input asp-for="StockTotalDisc" type="number" class="form-control" autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label asp-for="StockSubTotal" class="col-sm-6 col-form-label text-sm-end">Sub Total</label>
+                                <div class="col-sm-6">
+                                    <input asp-for="StockSubTotal" type="number" class="form-control" autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label asp-for="StockSubTax" class="col-sm-6 col-form-label text-sm-end">Sub Tax</label>
+                                <div class="col-sm-6">
+                                    <input asp-for="StockSubTax" type="number" class="form-control" autocomplete="off" readonly />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label asp-for="StockAllTotal" class="col-sm-6 col-form-label text-sm-end">All Total</label>
+                                <div class="col-sm-6">
+                                    <input asp-for="StockAllTotal" type="number" class="form-control" autocomplete="off" readonly />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="input-group input-group-merge mb-4">
+                                <br />
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            @if (Model.Id != 0)
+                            {
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-primary">Create</button>
+                            }
+                        </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--/ Toastr Demo -->
+@section Scripts {
+    @{
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script>
+            $(document).ready(function () {
+
+
+                function updateCalculations() {
+                    function formatNumber(number) {
+                        return parseFloat(number).toLocaleString('en-US', { maximumFractionDigits: 2 });
+                    }
+                    $('#StockTotalAmount').val(formatNumber(stockTotalAmount));
+                    $('#StockTotalDisc').val(formatNumber(stockTotalDisc));
+                    $('#StockSubTotal').val(formatNumber(stockSubTotal));
+                    $('#StockSubTax').val(formatNumber(stockSubTax));
+                    $('#StockAllTotal').val(formatNumber(stockAllTotal));
+
+                    var stockAmount = parseFloat($('#StockAmount').val()) || 0;
+                    var stockUnit = parseFloat($('#StockUnit').val()) || 0;
+                    var stockDiscount1 = parseFloat($('#StockDiscount1').val()) || 0;
+                    var stockDiscount2 = parseFloat($('#StockDiscount2').val()) || 0;
+
+                    var stockTotalAmount = stockAmount * stockUnit;
+                    $('#StockTotalAmount').val(stockTotalAmount);
+
+                    var stockTotalDisc1 = (stockTotalAmount * stockDiscount1) / 100;
+                    var stockTotalDisc2 = (stockTotalAmount - stockTotalDisc1) * stockDiscount2 / 100;
+                    var stockTotalDisc = stockTotalDisc1 + stockTotalDisc2;
+                    $('#StockTotalDisc').val(stockTotalDisc);
+
+                    var stockSubTotal = stockTotalAmount - stockTotalDisc;
+                    $('#StockSubTotal').val(stockSubTotal);
+
+                    var stockSubTax = (stockSubTotal * parseFloat($('#StockTax').val())) / 100;
+                    $('#StockSubTax').val(stockSubTax);
+
+                    var stockAllTotal = stockSubTotal + stockSubTax;
+                    $('#StockAllTotal').val(stockAllTotal);
+                }
+
+                // Input değerleri değiştiğinde güncelleme yap
+                $('#StockAmount, #StockUnit, #StockDiscount1, #StockDiscount2, #StockTax').change(function () {
+                    updateCalculations();
+                });
+
+                // Sayfa yüklendiğinde başlangıç hesaplamalarını yap
+                updateCalculations();
+
+            });
+        </script>
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -1,0 +1,81 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+
+<div class="position-relative">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner py-4">
+
+            <!-- Login -->
+            <div class="card p-2">
+                <!-- Logo -->
+                <div class="app-brand justify-content-center mt-5">
+                    <a href="/" class="app-brand-link gap-2">
+                        <span class="app-brand-logo demo">@await Html.PartialAsync("../_Partials/_Macros")</span>
+                        <span class="app-brand-text demo text-heading fw-bold">@TempData.Peek("appName")</span>
+                    </a>
+                </div>
+                <!-- /Logo -->
+
+                <div class="card-body mt-2">
+                    <h4 class="mb-2">Welcome to @TempData.Peek("appName")! 👋</h4>
+                    <p class="mb-4">Please sign-in to your account and start the adventure</p>
+
+                    <form id="formAuthentication" class="mb-3" method="POST">
+                        <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
+
+                        <div class="form-floating form-floating-outline mb-3">
+                            <input asp-for="Input.NormalizedUserName" id="email" class="form-control" autocomplete="username" aria-required="true" placeholder="Please entry username" autofocus />
+                            <label asp-for="Input.NormalizedUserName" class="form-label">Username</label>
+                            <span asp-validation-for="Input.NormalizedUserName" class="text-danger"></span>
+
+                        </div>
+                        <div class="mb-3">
+                            <div class="form-password-toggle">
+                                <div class="input-group input-group-merge">
+                                    <div class="form-floating form-floating-outline">
+                                        <input asp-for="Input.Password" class="form-control" autocomplete="current-password" aria-required="true" placeholder="password" />
+                                        <label asp-for="Input.Password" class="form-label">Password</label>
+                                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3 d-flex justify-content-between">
+                            <div class="form-check">
+
+                                <label for="remember-me" class="form-check-label">
+                                    <input class="form-check-input" asp-for="Input.RememberMe" id="remember-me" type="checkbox" checked />
+                                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                                </label>
+                            </div>
+
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+                        </div>
+                    </form>
+
+                    <p class="text-center">
+                        <span>New on our platform?</span>
+                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">
+                            <span>Create an account</span>
+                        </a>
+                    </p>
+
+
+                </div>
+            </div>
+            <!-- /Login -->
+            <img alt="mask" src="~/img/illustrations/auth-basic-login-mask-light.png" class="authentication-image d-none d-lg-block" data-app-light-img="illustrations/auth-basic-login-mask-light.png" data-app-dark-img="illustrations/auth-basic-login-mask-dark.png" />
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

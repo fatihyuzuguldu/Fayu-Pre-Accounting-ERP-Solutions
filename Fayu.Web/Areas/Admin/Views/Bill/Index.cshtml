@@ -1,0 +1,72 @@
+﻿@model List<Bill>
+@{
+    ViewData["Title"] = "Bills";
+}
+@section VendorStyles {
+
+    <link rel="stylesheet" href="~/vendor/libs/flatpickr/flatpickr.css" />
+    <link rel="stylesheet" href="~/vendor/libs/select2/select2.css" />
+}
+@section VendorScripts {
+    <script src="~/vendor/libs/cleavejs/cleave.js"></script>
+    <script src="~/vendor/libs/moment/moment.js"></script>
+    <script src="~/vendor/libs/flatpickr/flatpickr.js"></script>
+    <script src="~/vendor/libs/select2/select2.js"></script>
+}
+@section PageScripts {
+    <script src="~/js/form-layouts.js"></script>
+}
+@* ************** Content ************** *@
+<h4 class="py-3 mb-4">
+    <a href="/Admin/Dashboard/Index" class="text-muted fw-light">Dashboard /</a> <a href="/Admin/Bill/Index">Bills</a>
+</h4>
+
+<!-- Ajax Sourced Server-side -->
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5>Last Bills</h5>
+        <div class="ms-auto">
+            <a href="/Admin/Customer/Index" type="button" class="btn btn-primary">Companies</a>
+            <a href="/Admin/Supplier/Index" type="button" class="btn btn-primary">Suppliers</a>
+        </div>
+    </div>
+    <div class="card-datatable text-nowrap">
+        <table id="datatables" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Supplier/Company</th>
+                    <th>Last Transactions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model.OrderByDescending(item => item.UpdatedAt))
+                {
+                    <tr>
+
+                        <td>
+                            @if (obj.Company == null && obj.Supplier == null)
+                            {
+                                <b>Error</b>
+                            }
+                            else if (obj.Company != null)
+                            {
+                                <b>Company:     </b>  @obj.Company.CompanyName
+                            }
+                            else if (obj.Supplier != null)
+                            {
+                                <b>Supplier:      </b>     
+
+                                @obj.Supplier.SupplierName
+                            }
+                        </td>
+                        <td>@obj.UpdatedAt</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/upsert/company.js"></script>
+}

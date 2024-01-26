@@ -1,0 +1,119 @@
+﻿@model Acek
+@{
+    ViewData["Title"] = "Upsert Incoming Checks";
+}
+@section VendorStyles {
+
+    <link rel="stylesheet" href="~/vendor/libs/flatpickr/flatpickr.css" />
+    <link rel="stylesheet" href="~/vendor/libs/select2/select2.css" />
+}
+@section VendorScripts {
+    <script src="~/vendor/libs/cleavejs/cleave.js"></script>
+    <script src="~/vendor/libs/moment/moment.js"></script>
+    <script src="~/vendor/libs/flatpickr/flatpickr.js"></script>
+    <script src="~/vendor/libs/select2/select2.js"></script>
+}
+@section PageScripts {
+    <script src="~/js/form-layouts.js"></script>
+}
+
+@* ************** Content ************** *@
+<h4 class="py-3 mb-4">
+    <a href="/Admin/Dashboard/Index" class="text-muted fw-light">Dashboard /</a> <a href="/Admin/Acek/Index">Incoming Checks</a> / <a> @(Model.Id != 0 ? "Update" : "Create") Incoming Checks</a>
+</h4>
+
+<!-- Basic Layout -->
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-12">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">@(Model.Id != 0 ? "Update" : "Create") Incoming Checks</h5>
+            </div>
+            <div class="card-body">
+                <form method="post" class="row" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group input-group-merge mb-4">
+                                <span class="input-group-text"><i class="mdi mdi-account-outline"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="AcekMusteri" type="text" class="form-control" placeholder="Fatih Yuzuguldu" aria-label="Fatih Yuzuguldu" />
+                                    <label asp-for="AcekMusteri" class="ms-2">Customer</label>
+                                    <span asp-validation-for="AcekMusteri" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-merge mb-4">
+                                <span class="input-group-text"><i class="mdi mdi-calendar-range"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    @if (Model.Id != 0)
+                                    {
+                                        <input asp-for="AcekTarih" type="date" class="form-control" />
+                                    }
+                                    else
+                                    {
+                                        <input asp-for="AcekTarih" type="date" class="form-control" value="1" />
+                                    }
+                                    <label asp-for="AcekTarih" class="ms-2">Date</label>
+                                    <span asp-validation-for="AcekTarih" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-phone2" class="input-group-text"><i class="mdi mdi-currency-try"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="AcekTutar" type="text" class="form-control" />
+                                    <label asp-for="AcekTutar" class="ms-2">Balance</label>
+                                    <span asp-validation-for="AcekTutar" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-text"><i class="mdi mdi-bank"></i></span>
+                                    <div class="form-floating form-floating-outline">
+                                        <input asp-for="AcekSenet" type="text" class="form-control" placeholder="Bank" aria-label="Bank" />
+                                        <label asp-for="AcekSenet" class="ms-2">Check/Promissory Note</label>
+                                        <span asp-validation-for="AcekSenet" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-merge mb-4">
+                                <span class="input-group-text"><i class="mdi mdi-account-badge"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="AcekSeriNo" type="text" class="form-control" placeholder="A12" aria-label="A12" value="Salih" />
+                                    <label asp-for="AcekSeriNo" class="ms-2">Owner</label>
+                                    <span asp-validation-for="AcekSeriNo" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            @if (Model.Id != 0)
+                            {
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            }
+                            else
+                            {
+                                <button type="submit" class="btn btn-primary">Create</button>
+                            }
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--/ Toastr Demo -->
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

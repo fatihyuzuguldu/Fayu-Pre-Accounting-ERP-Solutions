@@ -1,0 +1,68 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Views\_Partials\WizardCheckout.cshtml" />
+    <None Include="Views\_Partials\_Macros.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalAddNewAddress.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalAddNewCc.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalAddPermission.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalAddRole.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalCreateApp.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalEditCc.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalEditPermission.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalEditUser.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalEnableOtp.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalPricing.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalReferEarn.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalSelectPaymentMethods.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalSelectPaymentProviders.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalShareProject.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalTwoFactorAuth.cshtml" />
+    <None Include="Views\_Partials\_Modals\ModalUpgradePlan.cshtml" />
+    <None Include="Views\_Partials\_Offcanvas\OffcanvasAddPayment.cshtml" />
+    <None Include="Views\_Partials\_Offcanvas\OffcanvasSendInvoice.cshtml" />
+  </ItemGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.QuickGrid.EntityFrameworkAdapter" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.0" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Fayu.DataAccess\Fayu.DataAccess.csproj" />
+    <ProjectReference Include="..\Fayu.Models\Fayu.Models.csproj" />
+    <ProjectReference Include="..\Fayu.Utility\Fayu.Utility.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Areas\Admin\Views\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\Admin\Views\_ViewStart.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="Areas\Identity\Pages\_ViewImports.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

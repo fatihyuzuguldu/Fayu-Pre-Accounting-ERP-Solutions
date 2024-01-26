@@ -1,0 +1,102 @@
+﻿@model List<Bill>
+@{
+
+    ViewData["Title"] = "Bills Supplier";
+    // id değerine göre filtrelenmiş tek bir nesneyi seç
+    var selectedObj = Model.FirstOrDefault(item => item.SupplierId == ViewBag.IdFromUrl);
+
+
+}
+@section VendorStyles {
+
+    <link rel="stylesheet" href="~/vendor/libs/flatpickr/flatpickr.css" />
+    <link rel="stylesheet" href="~/vendor/libs/select2/select2.css" />
+}
+@section VendorScripts {
+    <script src="~/vendor/libs/cleavejs/cleave.js"></script>
+    <script src="~/vendor/libs/moment/moment.js"></script>
+    <script src="~/vendor/libs/flatpickr/flatpickr.js"></script>
+    <script src="~/vendor/libs/select2/select2.js"></script>
+}
+@section PageScripts {
+    <script src="~/js/form-layouts.js"></script>
+}
+@* ************** Content ************** *@
+<h4 class="py-3 mb-4">
+    <a href="/Admin/Dashboard/Index" class="text-muted fw-light">Dashboard /</a> <a href="/Admin/Supplier/Index">Bills Supplier</a>
+</h4>
+
+<!-- Ajax Sourced Server-side -->
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        @if (@ViewBag.VeriSayisi == 0)
+        {
+            <script>
+                window.location.href = '/Admin/Bill/Upsert?supp=@ViewBag.IdFromUrl';
+            </script>
+        }
+        else
+        {
+            <h3>@selectedObj.Supplier.SupplierName</h3>
+        }
+
+
+        <div class="ms-auto">
+            <a href="/Admin/Bill/Upsert?supp=@ViewBag.IdFromUrl" type="button" class="btn btn-primary">Add New Bill</a>
+        </div>
+    </div>
+    <div class="card-datatable text-nowrap">
+        <table id="datatables" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Supplier</th>
+                    <th>Product</th>
+                    <th>Balance</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model.Where(item => item.SupplierId == ViewBag.IdFromUrl))
+
+                {
+                    <tr>
+                        <td>
+                            @if (obj.Supplier == null)
+                            {
+                                <b>Error</b>
+                            }
+                            else if (obj.Supplier != null)
+                            {
+                                @obj.Supplier.SupplierName
+                            }
+                        </td>
+                        <td>@obj.StockName</td>
+                        <td>@obj.StockAllTotal </td>
+
+                        <td>
+                            <div class="w-75 btn-group" role="group">
+                                @if (obj.Supplier == null && obj.Supplier == null)
+                                {
+                                    <b> </b>
+                                }
+                                else if (obj.Supplier != null)
+                                {
+                                    <a href="/Admin/Bill/Upsert?id=@obj.Id&supp=@obj.SupplierId" class="btn btn-primary mx-2">
+
+                                        <span class="mdi mdi-square-edit-outline"></span>
+                                    </a>
+                                }
+
+                                <a onClick="Delete('/admin/bill/delete/@obj.Id')" class="btn btn-danger mx-2"> <span style="color:white;" class="mdi mdi-delete-outline"></span></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/upsert/supplier.js"></script>
+}

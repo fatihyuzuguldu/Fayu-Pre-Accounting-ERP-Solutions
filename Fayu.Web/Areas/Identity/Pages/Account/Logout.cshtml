@@ -1,0 +1,36 @@
+﻿@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Log out";
+}
+
+<header>
+    <h1>@ViewData["Title"]</h1>
+    @{
+        if (User.Identity?.IsAuthenticated ?? false)
+        {
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
+            </form>
+        }
+        else
+        {
+            <p id="logoutMessage">You have successfully logged out of the application.</p>
+
+            <script>
+                // After 500 milliseconds (02. seconds), redirect to the home page
+                setTimeout(function () {
+                    window.location.href = "/";
+                }, 500);
+            </script>
+        }
+    }
+</header>
+@section scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Submit the form when the page loads
+            document.getElementById('logoutForm').submit();
+        });
+    </script>
+}

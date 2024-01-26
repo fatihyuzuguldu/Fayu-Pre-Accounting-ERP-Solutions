@@ -1,0 +1,59 @@
+﻿@model List<Company>
+@{
+    ViewData["Title"] = "Companies";
+}
+
+@* ************** Content ************** *@
+<h4 class="py-3 mb-4">
+    <a href="/Admin/Dashboard/Index" class="text-muted fw-light">Dashboard /</a> <a href="/Admin/Customer/Index">Companies</a>
+</h4>
+
+<!-- Ajax Sourced Server-side -->
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h5>Company</h5>
+        <div class="ms-auto">
+            <a href="/Admin/Customer/Upsert" type="button" class="btn btn-primary">Add New Company</a>
+        </div>
+    </div>
+    <div class="card-datatable text-nowrap">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Company</th>
+                    <th>Phone / Tax</th>
+                    <th>Last Time</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var obj in Model)
+                {
+                    <tr>
+                        <td>@obj.ShortName</td>
+                        <td>@obj.CompanyName <br /> @obj.CompanyFullName</td>
+                        <td>@obj.CompanyPhone <br /> @obj.CompanyTaxNumber</td>
+                        <td>@obj.LastTime </td>
+                        <td>@obj.CompanyAddress </td>
+                        <td>
+                            <div class="w-75 btn-group" role="group">
+                                <a href="/Admin/Bill/Company?id=@obj.Id" class="btn btn-success mx-2">
+                                    <span class="mdi mdi-currency-usd"></span>
+                                </a>
+                                <a href="/Admin/Customer/Upsert?id=@obj.Id" class="btn btn-primary mx-2">
+                                    <span class="mdi mdi-square-edit-outline"></span>
+                                </a>
+                                <a onClick="Delete('/admin/customer/delete/@obj.Id')" class="btn btn-danger mx-2"> <span style="color:white;" class="mdi mdi-delete-outline"></span></a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--/ Ajax Sourced Server-side -->
+@section Scripts {
+    <script src="~/upsert/supplier.js"></script>
+}

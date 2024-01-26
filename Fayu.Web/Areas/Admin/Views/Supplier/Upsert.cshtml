@@ -1,0 +1,130 @@
+﻿@model Supplier
+@{
+    ViewData["Title"] = "Upsert Supplier";
+}
+@section VendorStyles {
+
+    <link rel="stylesheet" href="~/vendor/libs/flatpickr/flatpickr.css" />
+    <link rel="stylesheet" href="~/vendor/libs/select2/select2.css" />
+}
+@section VendorScripts {
+    <script src="~/vendor/libs/cleavejs/cleave.js"></script>
+    <script src="~/vendor/libs/moment/moment.js"></script>
+    <script src="~/vendor/libs/flatpickr/flatpickr.js"></script>
+    <script src="~/vendor/libs/select2/select2.js"></script>
+}
+@section PageScripts {
+    <script src="~/js/form-layouts.js"></script>
+}
+
+@* ************** Content ************** *@
+<h4 class="py-3 mb-4">
+    <a href="/Admin/Dashboard/Index" class="text-muted fw-light">Dashboard /</a> <a href="/Admin/Supplier/Index">Supplier</a> / <a> @(Model.Id != 0 ? "Update" : "Create") Supplier</a>
+</h4>
+<!-- Basic Layout -->
+<div class="row">
+    <div class="col-xl">
+        <div class="card mb-12">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">@(Model.Id != 0 ? "Update" : "Create") Supplier</h5>
+            </div>
+            <div class="card-body">
+                <form method="post" class="row" enctype="multipart/form-data">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-company2" class="input-group-text"><i class="mdi mdi-office-building-outline"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="SupplierName" type="text" id="basic-icon-default-company" class="form-control" placeholder="Yuzuguldu Inc." aria-label="Yuzuguldu Inc." aria-describedby="basic-icon-default-company2" />
+                                    <label asp-for="SupplierName" class="ms-2">Supplier</label>
+                                    <span asp-validation-for="SupplierName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-fullname2" class="input-group-text"><i class="mdi mdi-account-outline"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="SupplierFullName" type="text" class="form-control" id="basic-icon-default-fullname" placeholder="Fatih Yuzuguldu" aria-label="Fatih Yuzuguldu" aria-describedby="basic-icon-default-fullname2" />
+                                    <label asp-for="SupplierFullName" class="ms-2">Full Name</label>
+                                    <span asp-validation-for="SupplierFullName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="mb-4">
+                                <div class="input-group input-group-merge">
+                                    <span class="input-group-text"><i class="mdi mdi-email-outline"></i></span>
+                                    <div class="form-floating form-floating-outline">
+                                        <input asp-for="SupplierEmail" type="text" id="basic-icon-default-email" class="form-control" placeholder="fatih.yuz" aria-label="fatih.yuz" aria-describedby="basic-icon-default-email2" />
+                                        <label asp-for="SupplierEmail" class="ms-2">Email</label>
+                                        <span asp-validation-for="SupplierEmail" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-phone2" class="input-group-text"><i class="mdi mdi-phone"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="SupplierPhone" type="text" id="basic-icon-default-phone" class="form-control phone-mask" placeholder="535xxxxxxx" aria-label="535xxxxxxx" aria-describedby="basic-icon-default-phone2" />
+                                    <label asp-for="SupplierPhone" class="ms-2">Phone</label>
+                                    <span asp-validation-for="SupplierPhone" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-fullname2" class="input-group-text"><i class="mdi mdi-account-badge"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="ShortName" type="text" id="basic-icon-default-phone" class="form-control phone-mask" placeholder="A12" aria-label="A12" aria-describedby="basic-icon-default-phone2" />
+                                    <label asp-for="ShortName" class="ms-2">Short Name</label>
+                                    <span asp-validation-for="ShortName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-company2" class="input-group-text"><i class="mdi mdi-town-hall"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <input asp-for="SupplierTaxNumber" type="text" id="basic-icon-default-phone" class="form-control phone-mask" placeholder="1939000000" aria-label="1939000000" aria-describedby="basic-icon-default-phone2" />
+                                    <label asp-for="SupplierTaxNumber" class="ms-2">Tax Number</label>
+                                    <span asp-validation-for="SupplierTaxNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="input-group input-group-merge mb-4">
+                                <span id="basic-icon-default-message2" class="input-group-text"><i class="mdi mdi-map-marker"></i></span>
+                                <div class="form-floating form-floating-outline">
+                                    <textarea asp-for="SupplierAddress" id="basic-icon-default-message" class="form-control" placeholder="Address" aria-describedby="basic-icon-default-message2" style="height: 60px;"></textarea>
+                                    <label asp-for="SupplierAddress" class="ms-2">Adress</label>
+                                    <span asp-validation-for="SupplierAddress" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3" style="text-align:left;">
+                            <div class="">
+                                @if (Model.Id != 0)
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Update</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-primary form-control">Create</button>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}

@@ -1,0 +1,73 @@
+@{
+  TempData.Keep();
+
+  string? currentPage =  ViewContext.HttpContext.Request.Path;
+
+  ViewData["containerNav"] ??= "container-fluid";
+}
+
+<!-- Menu -->
+<aside id="layout-menu" class="layout-menu-horizontal menu-horizontal  menu bg-menu-theme flex-grow-0">
+  <div class='@ViewData["containerNav"] d-flex h-100'>
+    @* ! Full version menu-items *@
+    <ul class="menu-inner">
+
+      <!-- Dashboards -->
+
+            <li class='menu-item@(currentPage == "/" ? " active" : "")'>
+                <a asp-area="Admin" asp-controller="Dashboard" asp-action="Index" class="menu-link">
+                    <i class="menu-icon tf-icons mdi mdi-home-outline"></i>
+                    <div data-i18n="Dashboard">Dashboard</div>
+                </a>
+            </li>
+            <li class='menu-item@(currentPage.StartsWith("/Admin/Customer") || currentPage.StartsWith("/Admin/Customer/")|| currentPage.StartsWith("/Admin/Customer/Index")|| currentPage.StartsWith("/Admin/Customer/Upsert")|| currentPage.StartsWith("/Admin/Supplier")|| currentPage.StartsWith("/Admin/Supplier/")|| currentPage.StartsWith("/Admin/Supplier/Index") || currentPage.StartsWith("/Admin/Supplier/Upsert")? " active" : "")'>
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons mdi mdi-apps"></i>
+                    <div data-i18n="Partners">Partners</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class='menu-item@(currentPage == "/Admin/Customer" ? " active" : "")'>
+                        <a asp-area="Admin" asp-controller="Customer" asp-action="Index" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-account-plus"></i>
+                            <div data-i18n="Companies">Companies</div>
+                        </a>
+                    </li>
+                    <li class='menu-item@(currentPage == "/Admin/Supplier" ? " active" : "")'>
+                        <a asp-area="Admin" asp-controller="Supplier" asp-action="Index" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-store-plus"></i>
+                            <div data-i18n="Suppliers">Suppliers</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class='menu-item@(currentPage.StartsWith("/Admin/Acek") || currentPage.StartsWith("/Admin/Acek/")|| currentPage.StartsWith("/Admin/Acek/Index")|| currentPage.StartsWith("/Admin/Acek/Upsert")|| currentPage.StartsWith("/Admin/Ocek")|| currentPage.StartsWith("/Admin/Ocek/")|| currentPage.StartsWith("/Admin/Ocek/Index") || currentPage.StartsWith("/Admin/Ocek/Upsert")? " active" : "")'>
+                <a href="javascript:void(0)" class="menu-link menu-toggle">
+                    <i class="menu-icon tf-icons mdi mdi-chart-donut"></i>
+                    <div data-i18n="Checks">Checks</div>
+                </a>
+                <ul class="menu-sub">
+                    <li class='menu-item@(currentPage == "/Admin/Acek" ? " active" : "")'>
+                        <a asp-area="Admin" asp-controller="Acek" asp-action="Index" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-checkbook-arrow-left"></i>
+                            <div data-i18n="Incoming Checks">Incoming Checks</div>
+                        </a>
+                    </li>
+                    <li class='menu-item@(currentPage == "/Admin/Ocek" ? " active" : "")'>
+                        <a asp-area="Admin" asp-controller="Ocek" asp-action="Index" class="menu-link">
+                            <i class="menu-icon tf-icons mdi mdi-checkbook-arrow-right"></i>
+                            <div data-i18n="Outgoing Checks">Outgoing Checks</div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class='menu-item@(currentPage == "/Admin/Bill" ? " active" : "")'>
+                <a asp-area="Admin" asp-controller="Bill" asp-action="Index" class="menu-link">
+                    <i class="menu-icon tf-icons mdi mdi-file-document-outline"></i>
+                    <div data-i18n="Bill"> Bill</div>
+                </a>
+            </li>
+    </ul>
+  </div>
+</aside>
+<!-- / Menu -->

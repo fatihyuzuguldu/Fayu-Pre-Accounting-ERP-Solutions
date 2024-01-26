@@ -1,0 +1,21 @@
+﻿@if (TempData["success"] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.success('@TempData["success"]');
+        TempData["success"] = null; // Set TempData to null to prevent showing it again
+        TempData.Keep("success"); // Retain the TempData value
+    </script>
+}
+
+@if (TempData["error"] != null)
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script type="text/javascript">
+        toastr.error('@TempData["error"]');
+        TempData["error"] = null; // Set TempData to null to prevent showing it again
+        TempData.Keep("error"); // Retain the TempData value
+    </script>
+}
