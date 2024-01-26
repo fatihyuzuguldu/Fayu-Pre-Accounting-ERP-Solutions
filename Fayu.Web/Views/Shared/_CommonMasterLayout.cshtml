@@ -25,13 +25,13 @@
         string appName = TempData.Peek("appName") as string ?? "";
         string productPage = TempData.Peek("productPage") as string ?? "";
     }
-  <title>@title | @appName - Asp.Net Core MVC Admin Template</title>
-  <meta name="description" content="" />
+  <title>@title | @appName Pre-Accounting</title>
+    <meta name="description" content="Fayu Pre-Accounting ERP Solutions" />
 
   <!-- Canonical SEO -->
   <link rel="canonical" href='@productPage'>
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="~/img/favicon/favicon.ico" />
+  <link rel="icon" type="image/x-icon" href="~/img/logo/favicon.png" />
 
   <!-- Core Styles -->
   @await Html.PartialAsync("Sections/_Styles" + ViewData["frontVar"])
