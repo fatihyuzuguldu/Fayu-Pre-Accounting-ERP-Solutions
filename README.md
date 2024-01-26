@@ -1,4 +1,4 @@
-Fayu Pre-Accounting ERP Solutions
+Fayu Pre-Accounting ERP Solutions ASP.NET Core 8 MVC Layered Architecture
 
 --Login;
 
